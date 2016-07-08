@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BankAcc" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3037/WebBankClient/BankAcc.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3037/WebBankClient/BankAcc.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3037/WebBankClient/BankAcc.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBankAcc_GetCustDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustDetails" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_GetCustDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_Credit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Credit" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_Credit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_Credit_ServiceDataFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/" name="detail" element="q1:ServiceData" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_Debit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Debit" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_Debit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DebitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_CustomerBalance_InputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerBalance" />
+  </wsdl:message>
+  <wsdl:message name="IBankAcc_CustomerBalance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CustomerBalanceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBankAcc">
+    <wsdl:operation name="GetCustDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBankAcc/GetCustDetails" message="tns:IBankAcc_GetCustDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBankAcc/GetCustDetailsResponse" message="tns:IBankAcc_GetCustDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Credit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBankAcc/Credit" message="tns:IBankAcc_Credit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBankAcc/CreditResponse" message="tns:IBankAcc_Credit_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBankAcc/CreditServiceDataFault" name="ServiceDataFault" message="tns:IBankAcc_Credit_ServiceDataFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Debit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBankAcc/Debit" message="tns:IBankAcc_Debit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBankAcc/DebitResponse" message="tns:IBankAcc_Debit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CustomerBalance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBankAcc/CustomerBalance" message="tns:IBankAcc_CustomerBalance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBankAcc/CustomerBalanceResponse" message="tns:IBankAcc_CustomerBalance_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBankAcc" type="tns:IBankAcc">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCustDetails">
+      <soap:operation soapAction="http://tempuri.org/IBankAcc/GetCustDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Credit">
+      <soap:operation soapAction="http://tempuri.org/IBankAcc/Credit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceDataFault">
+        <soap:fault use="literal" name="ServiceDataFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Debit">
+      <soap:operation soapAction="http://tempuri.org/IBankAcc/Debit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CustomerBalance">
+      <soap:operation soapAction="http://tempuri.org/IBankAcc/CustomerBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BankAcc">
+    <wsdl:port name="BasicHttpBinding_IBankAcc" binding="tns:BasicHttpBinding_IBankAcc">
+      <soap:address location="http://localhost:3037/WebBankClient/BankAcc.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
